@@ -1,0 +1,27 @@
+ /* CSS for a more centered, responsive, and attractive navbar */
+ .navbar {
+  background-color: #FF9800; /* Change the color to a more eye-catching one */
+  font-weight: bold;
+}
+.nav-link {
+  color: #FFFFFF; /* Set the text color to white */
+}
+.nav-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline; /* Add an underline on hover */
+}
+.navbar-toggler {
+  border-color: #FFFFFF;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' strokeLinecap='round' strokeMiterlimit='10' strokeWidth='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.container {
+  text-align: center; /* Center the content */
+}
+@media (min-width: 992px) {
+  .container {
+    display: flex;
+    justify-content: space-between; /* Responsively adjust the alignment */
+  }
+}
