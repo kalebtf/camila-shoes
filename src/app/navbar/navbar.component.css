@@ -1,5 +1,5 @@
- /* CSS for a more centered, responsive, and attractive navbar */
- .navbar {
+/* CSS for a more centered, responsive, and attractive navbar */
+.navbar {
   background-color: #FF9800; /* Change the color to a more eye-catching one */
   font-weight: bold;
 }
@@ -18,10 +18,45 @@
 }
 .container {
   text-align: center; /* Center the content */
+  padding-left: 15px; /* Add left margin */
+  padding-right: 15px; /* Add right margin */
 }
+
+
+.tagline-container {
+  margin-top: 6px;
+}
+
+.tagline {
+  font-weight: bold;
+  color: #FF9800; /* Set the text color */
+  background-color: #ffffff; /* Set the background color */
+  padding: 5px 10px; /* Add some padding */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Add a subtle shadow */
+}
+
+
+
 @media (min-width: 992px) {
   .container {
     display: flex;
     justify-content: space-between; /* Responsively adjust the alignment */
   }
 }
+
+/* Style the logo container */
+.logo-container {
+  background-color: #FF9800; /* Set the same background color as the navbar */
+  display: inline-block;
+  padding: 5px; /* Add some padding around the logo */
+  border-radius: 5px; /* Add rounded corners to match the overall style */
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ...other styles... */

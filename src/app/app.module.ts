@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ContactComponent } from './contact/contact.component';
+import { HttpClientModule } from '@angular/common/http'; // Add this import
+
+
 
 @NgModule({
   declarations: [
@@ -13,10 +16,12 @@ import { ContactComponent } from './contact/contact.component';
     NavbarComponent,
     ProductListComponent,
     ContactComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

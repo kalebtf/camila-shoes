@@ -1,3 +1,4 @@
+<!-- src/app/product-list/product-list.component.html -->
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   <div class="col" *ngFor="let product of products">
     <div class="card h-100">
@@ -8,7 +9,12 @@
         <p class="card-text">Precio: {{ product.price }}</p>
         <p class="card-text">Tallas: 2 a 6</p>
         <p class="card-text">Tiempo de entrega: 8 días</p>
+        <button class="btn btn-primary" (click)="downloadImage(product.image)">Download Image</button>
       </div>
     </div>
   </div>
+</div>
+
+<div class="mt-4">
+  <input type="file" (change)="onFileSelected($event)" />
 </div>
