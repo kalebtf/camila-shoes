@@ -1,9 +1,10 @@
 // src/app/file-upload.service.ts
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.component';
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, GetObjectCommand,ListObjectsCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { HttpClient } from '@angular/common/http'; // Add this impor
+
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,19 @@ export class FileUploadService {
 
 
 
+  async listImages(): Promise<string[]> {
+    const listObjectsCommand = new ListObjectsCommand({
+      Bucket: environment.aws_bucket_name,
+      Prefix: '',
+    });
+
+    const response = await this.s3.send(listObjectsCommand);
+    if (response.Contents) {
+      return response.Contents.map(object => `https://${environment.aws_bucket_name}.s3.${environment.aws_region}.amazonaws.com/${object.Key}`);
+    } else {
+      return [];
+    }
+  }
 
 
 

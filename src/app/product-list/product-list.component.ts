@@ -1,19 +1,28 @@
 // src/app/product-list/product-list.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileUploadService } from '../file-upload.service';
 import { Product } from './product.interface';
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
-  products: Product[] = [
-    // ...
-  ];
+export class ProductListComponent implements OnInit {
+
+  products: Product[] = [];
 
   constructor(private fileUploadService: FileUploadService) {}
+
+  async ngOnInit(): Promise<void> {
+    const imageUrls = await this.fileUploadService.listImages();
+    this.products = imageUrls.map(url => ({
+      name: 'Product',
+      description: 'Product description',
+      image: url,
+      price: '$0',
+    }));
+  }
+
 
   async onFileSelected(event: any): Promise<void> {
     const file: File = event.target.files[0];
