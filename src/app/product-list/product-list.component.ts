@@ -13,15 +13,26 @@ export class ProductListComponent implements OnInit {
 
   constructor(private fileUploadService: FileUploadService) {}
 
+
+
   async ngOnInit(): Promise<void> {
-    const imageUrls = await this.fileUploadService.listImages();
-    this.products = imageUrls.map(url => ({
-      name: 'Product',
-      description: 'Product description',
-      image: url,
-      price: '$0',
-    }));
+    this.products = await this.fileUploadService.listProducts();
   }
+
+
+
+
+async onSubmit(product: Product): Promise<void> {
+  product.isEditing = false;
+
+  // Save the edited product information as a JSON file
+  const productJson = JSON.stringify(product);
+  const productJsonFileName = `${product.id}.json`;
+  await this.fileUploadService.uploadJsonFile(productJson, productJsonFileName);
+}
+
+
+
 
 
   async onFileSelected(event: any): Promise<void> {
@@ -34,12 +45,29 @@ export class ProductListComponent implements OnInit {
     console.log('File URL:', fileUrl);
 
     // Add the new product with the uploaded image URL
-    this.products.push({
-      name: 'New Product',
-      description: 'New product description',
-      image: fileUrl,
-      price: '$0',
+  // Generate a product id
+  const productId = `${Date.now()}`;
+
+  // Add the new product with the uploaded image URL
+  this.products.push({
+    id: productId, // Add this line
+    name: 'New Product',
+    description: 'New product description',
+    image: fileUrl,
+    price: '$0',
+    isEditing: false,
     });
+
+    // Save the product information as a JSON file
+  const productJson = JSON.stringify({
+    id: productId,
+    name: 'New Product',
+    description: 'New product description',
+    image: fileUrl,
+    price: '$0',
+  });
+  const productJsonFileName = `${productId}.json`;
+  await this.fileUploadService.uploadJsonFile(productJson, productJsonFileName);
   }
 
   async downloadImage(imageUrl: string): Promise<void> {

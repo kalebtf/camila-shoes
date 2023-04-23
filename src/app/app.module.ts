@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule } from '@angular/common/http'; // Add this import
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http'; // Add this import
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

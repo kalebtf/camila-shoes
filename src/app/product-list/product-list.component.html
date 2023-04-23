@@ -1,12 +1,35 @@
 <!-- src/app/product-list/product-list.component.html -->
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  <div *ngFor="let product of products">
-    <img [src]="product.image" alt="Product image" width="300">
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
-  </div>
-</div>
 
 <div class="mt-4">
   <input type="file" (change)="onFileSelected($event)" />
+</div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<!-- ... -->
+<div *ngFor="let product of products">
+  <div *ngIf="!product.isEditing">
+    <h2>{{ product.name }}</h2>
+    <img [src]="product.image" alt="Product image" width="300">
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <button (click)="product.isEditing = true">Edit</button>
+  </div>
+  <form *ngIf="product.isEditing" (submit)="onSubmit(product)">
+    <div>
+      <label>Name</label>
+      <input [(ngModel)]="product.name" name="name">
+    </div>
+    <div>
+      <label>Description</label>
+      <textarea [(ngModel)]="product.description" name="description"></textarea>
+    </div>
+    <div>
+      <label>Price</label>
+      <input [(ngModel)]="product.price" name="price">
+    </div>
+    <button type="submit">Save</button>
+    <button type="button" (click)="product.isEditing = false">Cancel</button>
+  </form>
+</div>
+<!-- ... -->
+
 </div>
